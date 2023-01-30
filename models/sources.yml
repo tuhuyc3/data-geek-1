@@ -1,0 +1,6 @@
+sources:
+  - name: hdb
+    database: analytics_339895848
+    tables:
+      - name: events_*
+      - name: events_intraday_*
