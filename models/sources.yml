@@ -4,4 +4,22 @@ sources:
     database: ubi-dng-hdb-live-prod
     tables:
       - name: events_*
+        loaded_at_field: event_timestamp
+        freshness:
+          warn_after:
+            count: 24
+            period: hour
+          error_after:
+            count: 48
+            period: hour
+        loaded_at_field: loaded_at_field
       - name: events_intraday_*
+        loaded_at_field: event_timestamp
+        freshness:
+          warn_after:
+            count: 24
+            period: hour
+          error_after:
+            count: 48
+            period: hour
+        loaded_at_field: loaded_at_field

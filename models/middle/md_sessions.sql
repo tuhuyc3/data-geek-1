@@ -54,7 +54,7 @@ where
         (select 
             user_pseudo_id 
         from 
-            {{ ref('events') }}
+            {{ ref('stg_events') }}
         where   
             (country = 'China' and city = '' and continent = '(not set)')
             )
