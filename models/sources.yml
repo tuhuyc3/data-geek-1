@@ -1,6 +1,7 @@
+version: 2
 sources:
-  - name: hdb
-    database: analytics_339895848
+  - name: analytics_339895848
+    database: ubi-dng-hdb-live-prod
     tables:
       - name: events_*
       - name: events_intraday_*
