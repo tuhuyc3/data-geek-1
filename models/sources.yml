@@ -12,7 +12,7 @@ sources:
           error_after:
             count: 48
             period: hour
-        loaded_at_field: loaded_at_field
+        
       - name: events_intraday_*
         loaded_at_field: event_timestamp
         freshness:
@@ -22,4 +22,100 @@ sources:
           error_after:
             count: 48
             period: hour
-        loaded_at_field: loaded_at_field
+        
+
+  - name: analytics_305405864
+    database: dng-fhio-live-dev
+    tables:
+      - name: events_*
+        loaded_at_field: event_timestamp
+        freshness:
+          warn_after:
+            count: 24
+            period: hour
+          error_after:
+            count: 48
+            period: hour
+        
+      - name: events_intraday_*
+        loaded_at_field: event_timestamp
+        freshness:
+          warn_after:
+            count: 24
+            period: hour
+          error_after:
+            count: 48
+            period: hour
+        
+        
+  - name: analytics_305256413
+    database: dng-tcest-live
+    tables:
+      - name: events_*
+        loaded_at_field: event_timestamp
+        freshness:
+          warn_after:
+            count: 24
+            period: hour
+          error_after:
+            count: 48
+            period: hour
+        
+      - name: events_intraday_*
+        loaded_at_field: event_timestamp
+        freshness:
+          warn_after:
+            count: 24
+            period: hour
+          error_after:
+            count: 48
+            period: hour
+        
+        
+  - name: analytics_336061606
+    database: ubi-dng-hsah-live-prod
+    tables:
+      - name: events_*
+        loaded_at_field: event_timestamp
+        freshness:
+          warn_after:
+            count: 24
+            period: hour
+          error_after:
+            count: 48
+            period: hour
+        
+      - name: events_intraday_*
+        loaded_at_field: event_timestamp
+        freshness:
+          warn_after:
+            count: 24
+            period: hour
+          error_after:
+            count: 48
+            period: hour
+        
+        
+  - name: analytics_305396465
+    database: dng-imt-live
+    tables:
+      - name: events_*
+        loaded_at_field: event_timestamp
+        freshness:
+          warn_after:
+            count: 24
+            period: hour
+          error_after:
+            count: 48
+            period: hour
+        
+      - name: events_intraday_*
+        loaded_at_field: event_timestamp
+        freshness:
+          warn_after:
+            count: 24
+            period: hour
+          error_after:
+            count: 48
+            period: hour
+        
