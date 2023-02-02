@@ -4,7 +4,7 @@ with
             round_id,
             count(case when event_name = 'player_died' then 1 end) as dead_count,
             count(case when event_name = 'game_roundOver' then 1 end) as round_finish
-        from {{ ref("stg_events_hdb") }}
+        from {{ ref("staging_events") }}
         where round_id != 'null'
         group by round_id
         having count(case when event_name = 'game_roundStart' then 1 end) > 0

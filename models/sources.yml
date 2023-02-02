@@ -12,16 +12,7 @@ sources:
           error_after:
             count: 48
             period: hour
-        
-      - name: events_intraday_*
-        loaded_at_field: event_timestamp
-        freshness:
-          warn_after:
-            count: 24
-            period: hour
-          error_after:
-            count: 48
-            period: hour
+
         
 
   - name: analytics_305405864
@@ -37,15 +28,7 @@ sources:
             count: 48
             period: hour
         
-      - name: events_intraday_*
-        loaded_at_field: event_timestamp
-        freshness:
-          warn_after:
-            count: 24
-            period: hour
-          error_after:
-            count: 48
-            period: hour
+
         
         
   - name: analytics_305256413
@@ -61,15 +44,7 @@ sources:
             count: 48
             period: hour
         
-      - name: events_intraday_*
-        loaded_at_field: event_timestamp
-        freshness:
-          warn_after:
-            count: 24
-            period: hour
-          error_after:
-            count: 48
-            period: hour
+
         
         
   - name: analytics_336061606
@@ -85,15 +60,7 @@ sources:
             count: 48
             period: hour
         
-      - name: events_intraday_*
-        loaded_at_field: event_timestamp
-        freshness:
-          warn_after:
-            count: 24
-            period: hour
-          error_after:
-            count: 48
-            period: hour
+
         
         
   - name: analytics_305396465
@@ -109,13 +76,5 @@ sources:
             count: 48
             period: hour
         
-      - name: events_intraday_*
-        loaded_at_field: event_timestamp
-        freshness:
-          warn_after:
-            count: 24
-            period: hour
-          error_after:
-            count: 48
-            period: hour
+
         

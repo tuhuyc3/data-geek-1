@@ -39,7 +39,7 @@ with dts as
     , max(game)  as raw_game_name 
     , max(player_id) as player_id
 
-from {{ ref('stg_events_hdb') }}
+from {{ ref('staging_events') }}
 where city not in ('Pune', 'Da Nang', 'Havant')  
 
 group by 2,3,6,7,8,9,10,11
@@ -54,7 +54,7 @@ where
         (select 
             user_pseudo_id 
         from 
-            {{ ref('stg_events_hdb') }}
+            {{ ref('staging_events') }}
         where   
             (country = 'China' and city = '' and continent = '(not set)')
             )
