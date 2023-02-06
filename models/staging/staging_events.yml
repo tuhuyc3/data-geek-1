@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: staging_events
+    description: staged events data from HDB web game
+    columns:
+      - name: user_pseudo_id
+        description: unique id of each device
+        tests:
+          - not_null

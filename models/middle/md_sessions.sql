@@ -14,7 +14,7 @@ with dts as
     , session_id
     , 'Game Distribution' platform_category
     , max(game_version) as game_version
-    , datetime_diff(max(datetime),min(datetime),second) as session_time_sec
+    , datetime_diff(max(date_time),min(date_time),second) as session_time_sec
     , count(case when ads_type = 'VideoReward' and event_name = 'game.ad.start' then event_name else null end) as video_rewards
     , count(case when ads_type = 'Interstitial' and event_name = 'game.ad.start' then event_name else null end) as interstitial
     , count(case when ads_type = 'Banner' and event_name = 'game.ad.start' then event_name else null end) as banner
@@ -27,23 +27,20 @@ with dts as
     + min(case when event_name = 'game_roundOver' then max_fps end) + max(case when event_name = 'game_roundOver' then max_fps end))/4 as game_over_fps
     , avg(current_fps) as average_fps
     , count(distinct case when event_name = 'add_to_home_complete' then event_name else null end) as add_to_home
-    , coalesce(max( case when event_name = 'login_success' and login_id not like 'fb%' then 'ubiconnect'
-                when event_name = 'login_success' and login_id like 'fb%' then 'facebook' end), 'not login') as login_type
     , max(device_model) as device_model
     , count( distinct case when event_name like '%party%' then session_id else null end ) party
     , max(human_count) as human_count
-    , min(datetime) as date_time
+    , min(date_time) as date_time
     , max(deployment_environment) deployment_environment
     , max(operating_system_version) os_version
     , coalesce(max(case when event_name = 'game_techMessage' then checker end),'none') tech_message
     , max(game)  as raw_game_name 
     , max(player_id) as player_id
 
-from {{ ref('stg_events') }}
+from {{ ref('staging_events') }}
 where city not in ('Pune', 'Da Nang', 'Havant')  
 
-group by 2,3,6,7,8,9,10,11
-having datetime_diff(max(datetime),min(datetime),second) < 20000)
+group by 2,3,6,7,8,9,10,11)
 
 select 
     dts.*  
@@ -54,7 +51,7 @@ where
         (select 
             user_pseudo_id 
         from 
-            {{ ref('events') }}
+            {{ ref('staging_events') }}
         where   
             (country = 'China' and city = '' and continent = '(not set)')
             )
