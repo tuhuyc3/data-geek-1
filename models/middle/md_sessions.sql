@@ -4,7 +4,7 @@
 
 with events as (
     select * from {{ ref('staging_events') }}
-    {% if is_incremental() %})
+    {% if is_incremental() %}
     where date_time >= (select max(max_date_time) from {{this}})
     {% endif%}
 ),
@@ -46,7 +46,7 @@ dts as
     , coalesce(max(case when event_name = 'game_techMessage' then checker end),'none') tech_message
     , max(game)  as raw_game_name 
     , max(player_id) as player_id
-    , max(start_date_time) max_date_time
+    , max(date_time) max_date_time
 
 from events
 where city not in ('Pune', 'Da Nang', 'Havant')  
