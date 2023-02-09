@@ -1,4 +1,14 @@
-with dts as 
+{{ config(
+    materialized = 'incremental'
+)}}
+
+with events as (
+    select * from {{ ref('staging_events') }}
+    {% if is_incremental() %})
+    where date_time >= (select max(max_date_time) from {{this}})
+    {% endif%}
+),
+dts as 
 (select 
     min(date) as date
     , EXTRACT(WEEK(FRIDAY) FROM date) as week 
@@ -36,8 +46,9 @@ with dts as
     , coalesce(max(case when event_name = 'game_techMessage' then checker end),'none') tech_message
     , max(game)  as raw_game_name 
     , max(player_id) as player_id
+    , max(start_date_time) max_date_time
 
-from {{ ref('staging_events') }}
+from events
 where city not in ('Pune', 'Da Nang', 'Havant')  
 
 group by 2,3,6,7,8,9,10,11)
@@ -52,6 +63,6 @@ where
             user_pseudo_id 
         from 
             {{ ref('staging_events') }}
-        where   
+        where
             (country = 'China' and city = '' and continent = '(not set)')
             )
